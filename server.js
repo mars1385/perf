@@ -30,6 +30,19 @@ app.post('/add', async (req, res) => {
   }
 });
 
+app.get('/', async (req, res) => {
+  try {
+    const total = await Task.count();
+
+    res.json({
+      total,
+    });
+  } catch (error) {
+    // console.log(error);
+    res.status(500).json();
+  }
+});
+
 app.listen(port, () => {
   console.log(`server is running on port : ${port}`);
 });

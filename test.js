@@ -28,26 +28,34 @@ setTimeout(async () => {
     success: 0,
     failed: 0,
   };
-  await Promise.all(
-    d.map(async (_val, index) => {
-      try {
-        const res = await axios({
-          method: 'post',
-          url: 'http://localhost:5005/add',
-          timeout: 800000,
-          data: {
-            description: 'test dex',
-            index,
-          },
-        });
-        opt.success++;
-      } catch (error) {
-        // console.log(error.message);
-        opt.failed++;
-      }
-    })
-  );
+  // await Promise.all(
+  //   d.map(async (_val, index) => {
+  //     try {
+  //       const res = await axios({
+  //         method: 'post',
+  //         url: 'http://localhost:5005/add',
+  //         timeout: 800000,
+  //         data: {
+  //           description: 'test dex',
+  //           index,
+  //         },
+  //       });
+  //       opt.success++;
+  //     } catch (error) {
+  //       // console.log(error.message);
+  //       opt.failed++;
+  //     }
+  //   })
+  // );
 
   console.timeEnd('order');
   console.log(opt);
+
+  const res = await axios({
+    method: 'get',
+    url: 'http://localhost:5005',
+    timeout: 800000,
+  });
+
+  console.log(res.data);
 }, 1000 * 3);
